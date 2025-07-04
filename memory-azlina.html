@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Memory Slide untuk Azlina</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Fredoka One', cursive;
+      background: linear-gradient(120deg, #f2d50f 0%, #da0641 100%);
+      color: #fff;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 36px 0 0 0;
+    }
+    .back-link {
+      display: inline-block;
+      margin: 12px 0 28px 20px;
+      font-size: 1.09rem;
+      color: #da0641;
+      background: #fff0b3;
+      padding: 8px 22px 8px 18px;
+      border-radius: 22px;
+      text-decoration: none;
+      box-shadow: 0 2px 12px #da064145;
+      font-weight: bold;
+      transition: background .2s, color .2s;
+    }
+    .back-link:hover {
+      background: #da0641;
+      color: #fff0b3;
+      text-decoration: underline;
+    }
+    .memory-title {
+      color: #da0641;
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 36px;
+      text-shadow: 0 2px 6px #fff8;
+      letter-spacing: 2px;
+      background: #fff9;
+      padding: 12px 0 8px 0;
+      border-radius: 18px;
+      margin-top: 0;
+    }
+    .slide-container {
+      position: relative;
+      max-width: 720px;
+      margin: 30px auto 0 auto;
+      background: #fff9;
+      border-radius: 32px;
+      box-shadow: 0 4px 28px #da064133;
+      padding: 44px 0 44px 0;
+      min-height: 430px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .memory-slide {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      min-height: 290px;
+      padding: 0 24px;
+      animation: fadeIn .6s;
+    }
+    .memory-slide.active {
+      display: flex;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.97);}
+      to   { opacity: 1; transform: scale(1);}
+    }
+    .memory-photo {
+      width: 90vw;
+      max-width: 540px;
+      height: auto;
+      aspect-ratio: 4/3;
+      border-radius: 32px;
+      object-fit: cover;
+      box-shadow: 0 2px 16px #da064133;
+      background: #f2d50f44;
+      margin-bottom: 30px;
+      border: 6px solid #fff0b3;
+      transition: box-shadow 0.18s, border 0.18s;
+    }
+    .memory-text {
+      color: #da0641;
+      font-size: 1.25rem;
+      font-weight: bold;
+      letter-spacing: 0.5px;
+      line-height: 1.5;
+      text-shadow: 0 1px 2px #f2d50f55;
+      min-height: 60px;
+      background: #fff8;
+      border-radius: 18px;
+      padding: 18px 18px 12px 18px;
+      margin: 0 auto;
+      max-width: 90%;
+    }
+    .slider-controls {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      margin-top: 40px;
+      gap: 32px;
+    }
+    .slider-btn {
+      background: linear-gradient(135deg,#f2d50f 60%,#da0641 100%);
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      width: 64px;
+      height: 64px;
+      font-size: 2.1rem;
+      cursor: pointer;
+      box-shadow: 0 2px 10px #da064133;
+      transition: background 0.2s, transform 0.15s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      outline: none;
+      user-select: none;
+    }
+    .slider-btn:active {
+      transform: scale(0.93);
+      background: #da0641;
+    }
+    .slider-indicator {
+      display: flex;
+      flex-direction: row;
+      gap: 12px;
+      margin-top: 18px;
+    }
+    .slider-dot {
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      background: #fff0b3;
+      box-shadow: 0 1px 4px #da064155;
+      transition: background 0.19s, box-shadow 0.19s;
+    }
+    .slider-dot.active {
+      background: #da0641;
+      box-shadow: 0 0 0 4px #fff0b3;
+    }
+    .link-ucapan {
+      display: block;
+      margin: 34px auto 0 auto;
+      text-align: center;
+      background: #da0641;
+      color: #fff0b3;
+      font-weight: bold;
+      font-size: 1.13rem;
+      padding: 16px 38px;
+      border-radius: 24px;
+      box-shadow: 0 2px 10px #da064123;
+      letter-spacing: 1px;
+      text-decoration: none;
+      transition: background 0.2s, color 0.2s;
+      max-width: 270px;
+    }
+    .link-ucapan:hover {
+      background: #fff0b3;
+      color: #da0641;
+      text-decoration: underline;
+    }
+    .credit {
+      margin-top: 60px;
+      font-size: 1rem;
+      color: #fff9;
+      text-shadow: 1px 1px 2px #a06c23b3;
+      letter-spacing: 1px;
+      text-align: center;
+      margin-bottom: 22px;
+    }
+    @media (max-width: 900px) {
+      .slide-container { max-width: 97vw; }
+      .memory-photo { max-width: 95vw;}
+    }
+    @media (max-width: 650px) {
+      .memory-title { font-size: 1.22rem; }
+      .slide-container { min-height: 220px; padding: 18px 0;}
+      .memory-photo { border-radius: 18px; }
+      .memory-text { font-size: 1.01rem; padding: 13px 7px 7px 10px;}
+      .slider-btn { width: 42px; height: 42px; font-size: 1.18rem;}
+      .slider-controls { margin-top: 18px; gap: 7vw;}
+      .slider-dot { width: 11px; height: 11px; }
+    }
+    @media (max-width: 400px) {
+      .slide-container { padding: 12px 0; }
+      .memory-text { min-height: 32px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="index.html" class="back-link">&larr; Kembali ke Halaman Utama</a>
+    <div class="memory-title">Memory Line 📸</div>
+    <div class="slide-container">
+      <div class="memory-slide active">
+        <img class="memory-photo" src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=facearea&w=800&h=600" alt="Foto 1">
+        <div class="memory-text">Waktu pertama kali kita jalan bareng, penuh rasa deg-degan dan tawa kecil yang nggak terlupakan!</div>
+      </div>
+      <div class="memory-slide">
+        <img class="memory-photo" src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=facearea&w=800&h=600" alt="Foto 2">
+        <div class="memory-text">Momen seru di pantai, main air sampai basah kuyup, tapi tetap happy bareng Azlina!</div>
+      </div>
+      <div class="memory-slide">
+        <img class="memory-photo" src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=facearea&w=800&h=600" alt="Foto 3">
+        <div class="memory-text">Nonton konser favoritmu, lihat kamu bahagia itu priceless banget!</div>
+      </div>
+      <div class="slider-controls">
+        <button class="slider-btn" id="prevBtn" aria-label="Sebelumnya">&#8592;</button>
+        <button class="slider-btn" id="nextBtn" aria-label="Selanjutnya">&#8594;</button>
+      </div>
+      <div class="slider-indicator" id="sliderIndicator"></div>
+    </div>
+    <a href="ucapan-azlina.html" class="link-ucapan">Lihat Ucapan dari Dian 🌷</a>
+    <div class="credit">Dibuat spesial untuk Azlina 💛 oleh partner ulang tahunmu</div>
+  </div>
+  <script>
+    const slides = Array.from(document.querySelectorAll('.memory-slide'));
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const indicator = document.getElementById('sliderIndicator');
+    let current = 0;
+
+    function updateSlide(to) {
+      slides[current].classList.remove('active');
+      current = (to + slides.length) % slides.length;
+      slides[current].classList.add('active');
+      updateIndicator();
+    }
+
+    function updateIndicator() {
+      indicator.innerHTML = '';
+      slides.forEach((_, idx) => {
+        let dot = document.createElement('div');
+        dot.className = 'slider-dot' + (idx === current ? ' active' : '');
+        dot.onclick = () => updateSlide(idx);
+        indicator.appendChild(dot);
+      });
+    }
+
+    prevBtn.onclick = () => updateSlide(current - 1);
+    nextBtn.onclick = () => updateSlide(current + 1);
+    updateIndicator();
+
+    // swipe gesture for mobile
+    let startX = null;
+    document.querySelector('.slide-container').addEventListener('touchstart', e => {
+      if (e.touches.length === 1) startX = e.touches[0].clientX;
+    });
+    document.querySelector('.slide-container').addEventListener('touchend', e => {
+      if (startX !== null) {
+        let dx = e.changedTouches[0].clientX - startX;
+        if (dx > 40) updateSlide(current - 1);
+        if (dx < -40) updateSlide(current + 1);
+      }
+      startX = null;
+    });
+
+    // Keyboard navigation
+    document.addEventListener('keydown', e => {
+      if (e.key === 'ArrowLeft') updateSlide(current - 1);
+      if (e.key === 'ArrowRight') updateSlide(current + 1);
+    });
+  </script>
+</body>
+</html>
