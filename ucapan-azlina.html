@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Ucapan dari Dian untuk Azlina</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Fredoka One', cursive;
+      background: linear-gradient(120deg, #f2d50f 0%, #da0641 100%);
+      color: #fff;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    .container {
+      max-width: 480px;
+      margin: 0 auto;
+      padding: 36px 0 0 0;
+    }
+    .back-link {
+      display: inline-block;
+      margin: 12px 0 28px 20px;
+      font-size: 1.09rem;
+      color: #da0641;
+      background: #fff0b3;
+      padding: 8px 22px 8px 18px;
+      border-radius: 22px;
+      text-decoration: none;
+      box-shadow: 0 2px 12px #da064145;
+      font-weight: bold;
+      transition: background .2s, color .2s;
+    }
+    .back-link:hover {
+      background: #da0641;
+      color: #fff0b3;
+      text-decoration: underline;
+    }
+    .chat-section {
+      background: linear-gradient(120deg,#da0641 30%, #f2d50f 100%);
+      padding: 48px 0 56px 0;
+      min-height: 50vh;
+      border-radius: 28px 28px 0 0;
+      box-shadow: 0 -4px 40px #da064166;
+    }
+    .chat-title {
+      color: #fff0b3;
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 36px;
+      text-shadow: 0 2px 8px #da0641;
+      letter-spacing: 2px;
+    }
+    .chat-wa {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 24px;
+      max-width: 430px;
+      width: 90vw;
+      margin: 0 auto;
+      min-height: 220px;
+    }
+    .wa-bubble {
+      background: #fff;
+      color: #555;
+      border-radius: 18px 18px 4px 18px;
+      padding: 16px 22px 16px 18px;
+      font-size: 1.13rem;
+      box-shadow: 0 4px 20px #da064133;
+      max-width: 100%;
+      position: relative;
+      margin-right: 0;
+      margin-left: 36px;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      line-height: 1.6;
+      letter-spacing: 0.1px;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity .5s, transform .5s;
+    }
+    .wa-bubble.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .wa-bubble.typing {
+      opacity: 0.6;
+      font-style: italic;
+      color: #aaa;
+    }
+    .wa-bubble:after {
+      content: "";
+      position: absolute;
+      right: -17px;
+      top: 18px;
+      border-width: 8px 0 8px 17px;
+      border-style: solid;
+      border-color: transparent transparent transparent #fff;
+      display: block;
+    }
+    .wa-time {
+      font-size: 0.91rem;
+      color: #bbb;
+      margin-top: 6px;
+      margin-right: 2px;
+      text-align: right;
+      font-family: 'Fredoka One', cursive;
+    }
+    .credit {
+      margin-top: 60px;
+      font-size: 1rem;
+      color: #fff9;
+      text-shadow: 1px 1px 2px #a06c23b3;
+      letter-spacing: 1px;
+      text-align: center;
+      margin-bottom: 22px;
+    }
+    @media (max-width: 650px) {
+      .chat-title { font-size: 1.22rem; }
+      .wa-bubble { font-size: 0.97rem; padding: 10px 13px 10px 11px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="index.html" class="back-link">&larr; Kembali ke Menu Utama</a>
+    <section class="chat-section" id="chatSection">
+      <div class="chat-title">Ucapan dari Dian 🌷</div>
+      <div class="chat-wa" id="chatWa">
+        <!-- Bubble is injected by JS -->
+      </div>
+      <div class="credit">Dibuat spesial untuk Azlina 🤍 oleh Dian:3</div>
+    </section>
+  </div>
+  <script>
+    (function() {
+      let alreadyRun = false;
+      document.addEventListener('DOMContentLoaded', function() {
+        if(alreadyRun) return;
+        alreadyRun = true;
+        const chatWa = document.getElementById('chatWa');
+        const bubbles = [
+          {
+            text: 'Selamat ulang tahun, Sayang! Semoga di tahun ini kamu diberikan kesehatan dan kebahagiaan yang layak;D.',
+            time: '21:07'
+          },
+          {
+            text: 'Aku doakan semua impian dan harapanmu bisa tercapai secepatnya, dan semoga kamu dapat menjadi lebih hebat dan kuat dari sebelumnya.',
+            time: '21:08'
+          },
+          {
+            text: 'Tapi ni tapi, kamu juga manusia, jadi ga semua situasi kudu kuat, jadi kalau memang letih sangat, istirahatlah, lalu bangkitlah, wahai anak muda.',
+            time: '21:09'
+          },
+          {
+            text: 'Semoga tahun ini, berjalan lancar yah? Aamiin;)',
+            time: '21:10'
+          }
+        ];
+        // Hapus isi chat sebelum mulai
+        chatWa.innerHTML = '';
+        function showBubbles() {
+          let i = 0;
+          function typeBubble() {
+            if (i >= bubbles.length) return;
+            // Typing bubble
+            const typing = document.createElement('div');
+            typing.className = 'wa-bubble typing visible';
+            typing.textContent = 'Dian sedang mengetik...';
+            chatWa.appendChild(typing);
+            setTimeout(() => {
+              typing.remove();
+              // Show actual bubble
+              const bubble = document.createElement('div');
+              bubble.className = 'wa-bubble visible';
+              bubble.innerHTML = `${bubbles[i].text}<div class="wa-time">${bubbles[i].time}</div>`;
+              chatWa.appendChild(bubble);
+              chatWa.scrollTop = chatWa.scrollHeight;
+              i++;
+              setTimeout(typeBubble, 1100 + Math.random() * 800);
+            }, 1000 + Math.random() * 700);
+          }
+          typeBubble();
+        }
+        showBubbles();
+      });
+    })();
+  </script>
+</body>
+</html>
